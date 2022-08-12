@@ -19,12 +19,12 @@ class ACMain : AppCompatActivity() {
         viewModelFactory = ACMainViewModelFactory(125)
         viewModel = ViewModelProvider(this, viewModelFactory)[ACMainViewModel::class.java]
 
-
-        binding.tvTotal.text = viewModel.getTotal().toString()
+        viewModel.totalData.observe(this) {
+            binding.tvTotal.text = it.toString()
+        }
 
         binding.btnAdd.setOnClickListener {
-            binding.tvTotal.text =
-                viewModel.setTotal(binding.etNumber.text.toString().toInt()).toString()
+            viewModel.setTotal(binding.etNumber.text.toString().toInt())
         }
 
     }

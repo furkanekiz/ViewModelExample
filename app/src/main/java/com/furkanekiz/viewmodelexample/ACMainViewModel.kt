@@ -10,6 +10,8 @@ class ACMainViewModel(startingTotal: Int) : ViewModel() {
     val totalData: LiveData<Int>
         get() = total
 
+    val inputText = MutableLiveData<String>()
+
     init {
         total.value = startingTotal
     }
@@ -18,7 +20,12 @@ class ACMainViewModel(startingTotal: Int) : ViewModel() {
         return total
     }*/
 
-    fun setTotal(number: Int) {
+    /*fun setTotal(number: Int) {
         total.value = (total.value)?.plus(number)
+    }*/
+
+    fun setTotal() {
+        val intInput: Int = inputText.value!!.toInt()
+        total.value = (total.value)?.plus(intInput)
     }
 }
